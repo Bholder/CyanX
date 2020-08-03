@@ -1,6 +1,6 @@
 {
   "name": "cyanx",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Cyanx基于ReactHook的,针对函数组件的简单、可扩展的状态管理器",
   "main": "./lib/index.js",
   "directories": {
