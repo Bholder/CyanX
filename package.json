@@ -26,6 +26,10 @@
     "管理器",
     "函数组件"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bholder/CyanX"
+  },
   "homepage": "https://github.com/Bholder/CyanX",
   "author": "Bholder.CY",
   "license": "MIT",
