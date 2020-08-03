@@ -1,0 +1,50 @@
+{
+  "name": "cyanx",
+  "version": "1.0.7",
+  "description": "Cyanx基于ReactHook的,针对函数组件的简单、可扩展的状态管理器",
+  "main": "./lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib && mkdir lib",
+    "lib": "npm run clean && babel src --out-dir lib --copy-files",
+    "prepublish": "npm run lib"
+  },
+  "keywords": [
+    "react",
+    "cyanx",
+    "hook",
+    "state",
+    "function",
+    "状态",
+    "管理器",
+    "函数组件"
+  ],
+  "homepage": "https://github.com/Bholder/CyanX",
+  "author": "Bholder.CY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bholder",
+    "email": "728963633@qq.com"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
+  },
+  "dependencies": {}
+}
