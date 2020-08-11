@@ -15,6 +15,9 @@ const withCyanxObservable = (Component, contextName, observedStateKeys) => (prop
         const observableState = {};
         observableState[`${contextName}Dispatch`] = cyanxDispatch;
 
+        // 将此公用仓库的dispatch存入名为${contextName}对象中
+        observableState[contextName] = { dispatch: cyanxDispatch };
+
         return useMemo(() => {
             return <Component {...props} {...observableState} />;
         }, [cyanxDispatch])
@@ -31,6 +34,9 @@ const withCyanxObservable = (Component, contextName, observedStateKeys) => (prop
         observedStateKeys.forEach(item => {
             observableState[item] = (cyanxState[item]);
         });
+
+        // 将共享State存入名为${contextName}对象中
+        observableState[contextName] = { ...observableState, dispatch: cyanxDispatch };
 
         observableState[`${contextName}Dispatch`] = cyanxDispatch;
 

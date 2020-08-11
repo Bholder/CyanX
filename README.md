@@ -41,7 +41,7 @@
 ### withCyanxObserver（<u>观察者</u>）
 ##### 观察指定的公用仓库&使用此公用仓库中状态的<u>可观察组件</u>，当公用仓库的某个状态值发生变化时，会重新渲染使用了此状态的<u>可观察组件</u>
 
-withCyanxObserver(component, publicStoreName, publicStoreDefaultValues)是一个高阶组件HOC，有3个参数
+`withCyanxObserver(component, publicStoreName, publicStoreDefaultValues)`是一个高阶组件HOC，有3个参数
 
 
 | 参数名 | 是否必填 | 说明 |
@@ -54,7 +54,7 @@ withCyanxObserver(component, publicStoreName, publicStoreDefaultValues)是一个
 ### withCyanxObservable（<u>可观察</u>的）
 ##### 将组件转为<u>可观察</u>状态，并得到所需的公用仓库的状态（存于props中），当使用的公用仓库的状态值改变时，将自动重新渲染，并得到最新的公用仓库的状态
 
-withCyanxObservable(component, publicStoreName, stateKeyArray)是一个高阶组件HOC，有3个参数  
+`withCyanxObservable(component, publicStoreName, stateKeyArray)`是一个高阶组件HOC，有3个参数  
 
 | 参数名 | 是否必填 | 说明 |
 | ---- | ---- | ---- |
@@ -67,8 +67,13 @@ withCyanxObservable(component, publicStoreName, stateKeyArray)是一个高阶组
 
 特征
 
-* 每一个公用仓库都会有唯一一个dispatch函数，函数名为`${公用仓库的名称}Dispatch`
-* dispatch会存在<u>可观察组件</u>的props中
+* 每一个公用仓库都会有唯一一个dispatch函数
+* dispatch会存在<u>可观察组件</u>的props中,函数名为`${公用仓库的名称}Dispatch`；或<u>可观察组件</u>的props中的名为`${公用仓库的名称}`的对象。此中有`dispatch`的元素
+  例子：有一个公用仓库`publicStore`，<u>可观察组件</u>`C`观察了公用仓库`publicStore`；<u>可观察组件</u>`C`获取公用仓库`publicStore`的`dispatch`可以通过一下两种方式拿到：
+  `props.publicStoreDispatch`
+  ||
+  `props.publicStore.dispatch`
+
 * dispatch改变状态的规则，同React中的setState()函数
 
   
@@ -77,7 +82,7 @@ withCyanxObservable(component, publicStoreName, stateKeyArray)是一个高阶组
 
 ```javascript
 // 公用仓库的名称
-const PublicStoreName =    '公用仓库的名称，自己定义';
+const PublicStoreName = 'publicStore';// 公用仓库的名称，自己定义
 
 // 公用仓库默认值
 const publicStoreDefaultValues = {
@@ -112,16 +117,25 @@ export default withCyanxObserver(ComponentObserver, PublicStoreName, publicStore
 import { withCyanxObservable } from 'cyanx';// 引入可观察的HOC
 
 // 观察者组件
-const ComponentObservable = ({a, b, c, 公用仓库的名称Dispatch, ...props}) => {...}
+const ComponentObservable = ({a, b, c, publicStoreDispatch, ...props}) => {...}
+
+||
+
+const ComponentObservable = (props) => {
+    const {a, b, c, dispatch} = props.publicStore;
+}
+
 
 export default withCyanxObservable(ComponentObservable, PublicStoreName, ['a', 'b', 'c']);
 ```
 
 
 ## 注意事项
-##### 处于内存的考虑，建议<u>观察者组件</u>的下1级的子组件均转化成<u>可观察组件</u>
+##### 出于内存的考虑，建议<u>观察者组件</u>的下1级的子组件均转化成<u>可观察组件</u>
 
+## GitHub 
+##### https://github.com/Bholder/CyanX
 
 ## License
 ##### MIT
-Copyright (c) 2013-present, Bholder CY
+Copyright (c) 2020-present, Bholder CY
